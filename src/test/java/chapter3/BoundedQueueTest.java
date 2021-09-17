@@ -4,13 +4,14 @@ import junit.framework.TestCase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+
 public class BoundedQueueTest extends TestCase {
-    BoundedQueue testQueue, failQueue;
+    BoundedQueue testQueue, newQueue;
 
     @BeforeEach
     public void testConstructor() {
         try {
-            failQueue = new BoundedQueue(0);
+            newQueue = new BoundedQueue(0);
         } catch (IllegalArgumentException e) {
             assertTrue(e instanceof IllegalArgumentException);
         } finally {
@@ -70,16 +71,13 @@ public class BoundedQueueTest extends TestCase {
     }
 
     @Test
-    public void isEmptyTrue() {
-        assertTrue(testQueue.isEmpty());
-    }
+    public void isEmptyTrue() { assertTrue(testQueue.isEmpty());}
 
     @Test
     public void isEmptyFalse() {
         String p1 = "person1";
         testQueue.enQueue(p1);
         assertFalse(testQueue.isEmpty());
-
     }
 
     @Test
@@ -90,7 +88,6 @@ public class BoundedQueueTest extends TestCase {
         testQueue.enQueue(p1);
         testQueue.enQueue(p2);
         testQueue.enQueue(p3);
-
         assertTrue(testQueue.isFull());
     }
 
@@ -98,23 +95,21 @@ public class BoundedQueueTest extends TestCase {
     public void isFullFalse() {
         String p1 = "person1";
         String p2 = "person2";
-
         testQueue.enQueue(p1);
         testQueue.enQueue(p2);
-
         assertFalse(testQueue.isFull());
     }
 
     @Test
     public void testToString() {
+
         String p1 = "person1";
         String p2 = "person2";
         String p3 = "person3";
-        testQueue.enQueue(p1);
-        testQueue.enQueue(p2);
-        testQueue.enQueue(p3);
+        this.testQueue.enQueue(p1);
+        this.testQueue.enQueue(p2);
+        this.testQueue.enQueue(p3);
         String expected = testQueue.toString();
-
         assertEquals(expected, "[person1, person2, person3]");
     }
 }
